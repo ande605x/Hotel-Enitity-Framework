@@ -121,11 +121,24 @@ namespace Hotel_Enitity_Framework
                 //db.Booking.Remove(slet1);
                 //db.SaveChanges();
 
-                Console.WriteLine("Slet Gæsten med Guestno:26");
-                var slet2 = (from g in db.Guest
-                             where g.Guest_No==26
+                Console.WriteLine("Slet Gæsten med Guestno:30 (slet først bookinger på værelset)");
+
+                var slet4list = from b in db.Booking
+                                where b.Guest_No == 30
+                                select b;
+
+                foreach(var item in slet4list)
+                {
+                    db.Booking.Remove(item);
+                }
+                
+                db.SaveChanges();
+
+
+                var slet5 = (from g in db.Guest
+                             where g.Guest_No==30
                              select g).FirstOrDefault();
-                db.Guest.Remove(slet2);
+                db.Guest.Remove(slet5);
                 db.SaveChanges();
 
 
