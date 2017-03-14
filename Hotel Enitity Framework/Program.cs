@@ -114,6 +114,22 @@ namespace Hotel_Enitity_Framework
 
 
 
+                //Console.WriteLine("Slet Bookingen med id: 24");
+                //var slet1 = (from b in db.Booking
+                //             where b.Booking_id == 24
+                //             select b).FirstOrDefault();
+                //db.Booking.Remove(slet1);
+                //db.SaveChanges();
+
+                Console.WriteLine("Slet Gæsten med Guestno:26");
+                var slet2 = (from g in db.Guest
+                             where g.Guest_No==26
+                             select g).FirstOrDefault();
+                db.Guest.Remove(slet2);
+                db.SaveChanges();
+
+
+
 
 
                 Console.ReadLine();
