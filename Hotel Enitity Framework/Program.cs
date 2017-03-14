@@ -61,6 +61,39 @@ namespace Hotel_Enitity_Framework
 
 
 
+
+                //Console.WriteLine("\n Indsæt dig selv som gæst i Guest Tabellen.");
+
+                //var alleGæster = from g in db.Guest
+                //                 select g;
+                //Guest TilføjMig = new Guest { Name="Anders", Address="Bernstorffsvej 67", Guest_No=666};
+                //db.Guest.Add(TilføjMig);
+                //db.SaveChanges();
+
+                //foreach(var item in alleGæster)
+                //{
+                //    Console.WriteLine(item.Guest_No + "   " + item.Name + " " + item.Address);
+                //}
+
+
+
+
+                Console.WriteLine("\n Opret en reservation på hotellet “Lucky Star” på lørdag");
+
+                var allebookinger = from b in db.Booking
+                                    select b;
+
+                Booking luckyStar = new Booking { Guest_No = 666, Room_No = 21, Booking_id = 99, Hotel_No = 7, Date_From = new DateTime(2017, 3, 18), Date_To = new DateTime(2017, 3, 19) };
+                db.Booking.Add(luckyStar);
+                db.SaveChanges();
+
+                foreach (var item in allebookinger)
+                {
+                    Console.WriteLine(item.Booking_id + " " + item.Room_No + " " + item.Guest_No + " " + item.Date_From + " " + item.Date_To);
+                }
+
+
+
                 Console.ReadLine();
             }
         }
