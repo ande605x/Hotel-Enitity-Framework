@@ -78,19 +78,41 @@ namespace Hotel_Enitity_Framework
 
 
 
-                Console.WriteLine("\n Opret en reservation på hotellet “Lucky Star” på lørdag");
+                //Console.WriteLine("\n Opret en reservation på hotellet “Lucky Star” på lørdag");
 
-                var allebookinger = from b in db.Booking
-                                    select b;
+                //var allebookinger = from b in db.Booking
+                //                    select b;
 
-                Booking luckyStar = new Booking { Guest_No = 666, Room_No = 21, Booking_id = 99, Hotel_No = 7, Date_From = new DateTime(2017, 3, 18), Date_To = new DateTime(2017, 3, 19) };
-                db.Booking.Add(luckyStar);
-                db.SaveChanges();
+                //Booking luckyStar = new Booking { Guest_No = 666, Room_No = 21, Booking_id = 99, Hotel_No = 7, Date_From = new DateTime(2017, 3, 18), Date_To = new DateTime(2017, 3, 19) };
+                //db.Booking.Add(luckyStar);
+                //db.SaveChanges();
 
-                foreach (var item in allebookinger)
-                {
-                    Console.WriteLine(item.Booking_id + " " + item.Room_No + " " + item.Guest_No + " " + item.Date_From + " " + item.Date_To);
-                }
+                //foreach (var item in allebookinger)
+                //{
+                //    Console.WriteLine(item.Booking_id + " " + item.Room_No + " " + item.Guest_No + " " + item.Date_From + " " + item.Date_To);
+                //}
+
+
+                //Console.WriteLine("\n Opdater adressen for Arn , nr 30 i Guest tabellen. Adressen skal Ændes til Elisagaardsvej 5");
+                //var update1 = (from g in db.Guest
+                //              where g.Guest_No == 30
+                //              select g).FirstOrDefault();
+
+                //update1.Address = "Elisagaardsvej 5";
+                //db.SaveChanges();
+
+                //Console.WriteLine("\n "+update1.Guest_No+" "+update1.Name+" "+update1.Address);
+
+
+
+                //Console.WriteLine("\n Opdater navn for det hotel der hedder Prindsen til at hedde “Roskilde First Hotel”");
+                //var update2 = (from h in db.Hotel
+                //               where h.Name == "Prindsen"
+                //               select h).FirstOrDefault();
+                //update2.Name = "Roskilde First Hotel";
+                //db.SaveChanges();
+
+
 
 
 
