@@ -121,27 +121,78 @@ namespace Hotel_Enitity_Framework
                 //db.Booking.Remove(slet1);
                 //db.SaveChanges();
 
-                Console.WriteLine("Slet Gæsten med Guestno:30 (slet først bookinger på værelset)");
 
-                var slet4list = from b in db.Booking
-                                where b.Guest_No == 30
-                                select b;
 
-                foreach(var item in slet4list)
+
+                //Console.WriteLine("Slet Gæsten med Guestno:30 (slet først bookinger på værelset)");
+
+                //var slet4list = from b in db.Booking
+                //                where b.Guest_No == 30
+                //                select b;
+
+                //foreach(var item in slet4list)
+                //{
+                //    db.Booking.Remove(item);
+                //}
+
+                //db.SaveChanges();
+
+
+                //var slet5 = (from g in db.Guest
+                //             where g.Guest_No==30
+                //             select g).FirstOrDefault();
+                //db.Guest.Remove(slet5);
+                //db.SaveChanges();
+
+
+                Console.WriteLine("**************GROUP***************");
+                Console.WriteLine("lav et Linq der viser hvor mange bookinger hver gæst har haft, samt summen af prisen på bookingerne");
+
+                var group1 = from b in db.Booking
+                             group b by b.Guest_No into newGroup
+                             select newGroup;
+
+                foreach (var g1 in group1)
                 {
-                    db.Booking.Remove(item);
+                    Console.WriteLine("Key: "+g1.Key);
+
+                    foreach(var g2 in g1)
+                    {
+                        Console.WriteLine("GuestNo: "+g2.Guest_No+" BookingID: "+g2.Booking_id);
+
+                    }
                 }
-                
-                db.SaveChanges();
 
 
-                var slet5 = (from g in db.Guest
-                             where g.Guest_No==30
-                             select g).FirstOrDefault();
-                db.Guest.Remove(slet5);
-                db.SaveChanges();
+                // Rigtig løsning her:
 
 
+                var group2 = from b in db.Booking
+                             group b by b.Guest_No into newGroup
+                             select new { keyen = newGroup.Key, numberofbookings = newGroup.Count(), sumafpris = newGroup.Sum(x => x.Room.Price) };
+
+                foreach(var i in group2)
+                {
+                    Console.WriteLine("Værelsesnr: "+i.keyen+" Antal bookinger: "+i.numberofbookings+" Pris ialt: "+i.sumafpris);
+                }
+
+
+
+
+
+
+
+                Console.WriteLine("Join ovenstående liste sammen med gæste listen så du også kan udskrive navnet");
+
+                var group3 = from g2 in group2
+                             join g in db.Guest
+                             on g2.keyen equals g.Guest_No
+                             select new { g2.keyen, g2.numberofbookings, g2.sumafpris, gæstenavn=g.Name };
+
+                foreach (var i in group3)
+                {
+                    Console.WriteLine("Værelsesnr: " + i.keyen + " Antal bookinger: " + i.numberofbookings + " Pris ialt: " + i.sumafpris+" Navn: "+i.gæstenavn);
+                }
 
 
 
